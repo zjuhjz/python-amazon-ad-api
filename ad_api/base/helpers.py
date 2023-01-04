@@ -20,10 +20,11 @@ def sp_endpoint(path, method="GET", content_type_abbr=None):
         def wrapper(*args, **kwargs):
             kwargs.update({"path": path, "method": method})
             if content_type_abbr:
-                kwargs.update({"headers": {"content_type": f'application/{content_type_abbr}+json',
+                kwargs.update({"headers": {"Content-Type": f'application/{content_type_abbr}+json',
                                            'Accept': f'application/{content_type_abbr}+json'}})
             else:
-                kwargs.update({"headers": {"content_type": 'application/json'}})
+                kwargs.update({"headers": {"Content-Type": 'application/json'}})
+            print(kwargs)
             return function(*args, **kwargs)
 
         wrapper.__doc__ = function.__doc__

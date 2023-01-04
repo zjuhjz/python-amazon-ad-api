@@ -1,5 +1,6 @@
 from ad_api.base import Client, sp_endpoint, fill_query_params, ApiResponse
 
+
 class AdGroups(Client):
 
     @sp_endpoint('/v2/sp/adGroups', method='POST')
@@ -45,7 +46,7 @@ class AdGroups(Client):
         """
         return self._request(kwargs.pop('path'), data=kwargs.pop('body'), params=kwargs)
 
-    @sp_endpoint('/v2/sp/adGroups', method='GET')
+    @sp_endpoint('/sp/adGroups/list', method='POST', content_type_abbr='vnd.spAdGroup.v3')
     def list_ad_groups(self, **kwargs) -> ApiResponse:
         r"""
         list_ad_groups(self, \*\*kwargs) -> ApiResponse
@@ -71,7 +72,8 @@ class AdGroups(Client):
             ApiResponse
 
         """
-        return self._request(kwargs.pop('path'),  params=kwargs)
+        return self._request(kwargs.pop('path'), data=kwargs.pop('body').encode(), headers=kwargs.pop('headers'),
+                             params=kwargs)
 
     @sp_endpoint('/v2/sp/adGroups/{}', method='GET')
     def get_ad_group(self, adGroupId, **kwargs) -> ApiResponse:
@@ -131,7 +133,7 @@ class AdGroups(Client):
             ApiResponse
 
         """
-        return self._request(kwargs.pop('path'),  params=kwargs)
+        return self._request(kwargs.pop('path'), params=kwargs)
 
     @sp_endpoint('/v2/sp/adGroups/extended/{}', method='GET')
     def get_ad_group_extended(self, adGroupId, **kwargs) -> ApiResponse:
