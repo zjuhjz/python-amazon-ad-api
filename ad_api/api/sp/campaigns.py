@@ -309,7 +309,7 @@ class Campaigns(Client):
         body = Utils.convert_body(kwargs.pop('body'))
         return self._request(kwargs.pop('path'), data=body, params=kwargs)
 
-    @sp_endpoint('/v2/sp/campaigns', method='GET')
+    @sp_endpoint('/sp/campaigns/list', method='GET', content_type_abbr='vnd.spCampaign.v3')
     def list_campaigns(self, **kwargs) -> ApiResponse:
         r"""
         list_campaigns(**kwargs) -> ApiResponse
@@ -333,7 +333,7 @@ class Campaigns(Client):
             ApiResponse
 
         """
-        return self._request(kwargs.pop('path'),  params=kwargs)
+        return self._request(kwargs.pop('path'), headers=kwargs.pop('headers'),  params=kwargs)
 
     @sp_endpoint('/v2/sp/campaigns/{}', method='GET')
     def get_campaign(self, campaignId, **kwargs) -> ApiResponse:

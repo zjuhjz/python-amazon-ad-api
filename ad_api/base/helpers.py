@@ -14,13 +14,21 @@ def fill_query_params(query, *args):
 
 T = TypeVar("T")
 
-def sp_endpoint(path, method="GET"):
+
+def sp_endpoint(path, method="GET", content_type_abbr=None):
     def decorator(function: T) -> T:
         def wrapper(*args, **kwargs):
             kwargs.update({"path": path, "method": method})
+            if content_type_abbr:
+                kwargs.update({"headers": {"content_type": f'application/{content_type_abbr}+json',
+                                           'Accept': f'application/{content_type_abbr}+json'}})
+            else:
+                kwargs.update({"headers": {"content_type": 'application/json'}})
             return function(*args, **kwargs)
+
         wrapper.__doc__ = function.__doc__
         return wrapper
+
     return decorator
 
 

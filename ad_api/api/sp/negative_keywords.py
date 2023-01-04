@@ -85,7 +85,7 @@ class NegativeKeywords(Client):
             """
         return self._request(kwargs.pop('path'), params=kwargs)
 
-    @sp_endpoint('/v2/sp/negativeKeywords', method='GET')
+    @sp_endpoint('/sp/negativeKeywords/list', method='GET', content_type_abbr='vnd.spNegativeKeyword.v3')
     def list_negative_keywords(self, **kwargs) -> ApiResponse:
         r"""
         list_negative_keywords(self, \*\*kwargs) -> ApiResponse
@@ -115,7 +115,7 @@ class NegativeKeywords(Client):
         """
         return self._request(kwargs.pop('path'), params=kwargs)
 
-    @sp_endpoint('/v2/sp/negativeKeywords', method='POST')
+    @sp_endpoint('/sp/negativeKeywords', method='POST', content_type_abbr='vnd.spNegativeKeyword.v3')
     def create_negative_keywords(self, **kwargs) -> ApiResponse:
         r"""
         create_negative_keywords(self, \*\*kwargs) -> ApiResponse:
@@ -135,9 +135,9 @@ class NegativeKeywords(Client):
             ApiResponse
 
         """
-        return self._request(kwargs.pop('path'), data=kwargs.pop('body'), params=kwargs)
+        return self._request(kwargs.pop('path'), data=kwargs.pop('body'),headers=kwargs.pop('headers'), params=kwargs)
 
-    @sp_endpoint('/v2/sp/negativeKeywords', method='PUT')
+    @sp_endpoint('/v2/sp/negativeKeywords', method='PUT', content_type_abbr='vnd.spNegativeKeyword.v3')
     def edit_negative_keywords(self, **kwargs) -> ApiResponse:
         r"""
         edit_negative_keywords(self, \*\*kwargs) -> ApiResponse:
